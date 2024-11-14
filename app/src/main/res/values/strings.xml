@@ -1,0 +1,10 @@
+<resources>
+    <string name="app_name">Weather App</string>
+    <string name="welcome_text">Bienvenido a la aplicación del clima</string>
+    <string name="current_forecast_button">Pronóstico actual</string>
+    <string name="city_list_button">Listado de ciudades</string>
+    <string name="cargando_informaci_n_del_clima">Cargando información del clima...</string>
+    <string name="pronostico_ciudades"> Pronóstico del clima por ciudad</string>
+    <string name="pron_stico_del_clima">Pronóstico actual del clima</string>
+    <string name="footer">Creado por Braulio Ruiz Niñoles</string>
+</resources>

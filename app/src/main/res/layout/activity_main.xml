@@ -1,0 +1,66 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:background="@drawable/back"
+    tools:context=".MainActivity">
+
+    <!-- Texto de bienvenida centrado -->
+    <TextView
+        android:id="@+id/welcome_text"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="80dp"
+        android:layout_marginBottom="24dp"
+        android:textAlignment="center"
+        android:fontFamily="sans-serif-medium"
+        android:text="@string/welcome_text"
+        android:textColor="#25AFFF"
+        android:textSize="34sp"/>
+
+    <!-- Botón para ver el pronóstico actual del clima -->
+    <Button
+        android:id="@+id/btn_current_forecast"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/current_forecast_button"
+        android:layout_below="@id/welcome_text"
+        android:backgroundTint="#238DC8"
+        android:textColor="#FFFFFF"
+        android:padding="12dp"
+        android:layout_marginBottom="12dp"
+        android:layout_marginTop="100dp"
+        android:textSize="18sp"
+        android:layout_centerHorizontal="true"/>
+
+    <!-- Botón para ver el listado de ciudades -->
+    <Button
+        android:id="@+id/btn_city_list"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/city_list_button"
+        android:layout_below="@id/btn_current_forecast"
+        android:backgroundTint="#238DC8"
+        android:textColor="#FFFFFF"
+        android:padding="12dp"
+        android:layout_marginBottom="12dp"
+        android:layout_centerHorizontal="true"
+        android:textSize="18sp"
+        android:layout_marginTop="50dp"/>
+
+    <!-- Pie de página con el texto centrado -->
+    <TextView
+        android:id="@+id/footer"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:fontFamily="sans-serif-medium"
+        android:text="@string/footer"
+        android:layout_alignParentBottom="true"
+        android:layout_marginBottom="15dp"
+        android:textColor="#FFFFFF"
+        android:layout_centerHorizontal="true"
+        android:textSize="14sp"/>
+</RelativeLayout>

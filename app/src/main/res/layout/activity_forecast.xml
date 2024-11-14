@@ -1,0 +1,60 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:background="@drawable/back">
+
+    <!-- TextView para mostrar el título de la pantalla -->
+    <TextView
+        android:id="@+id/forecast_title"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="80dp"
+        android:layout_marginBottom="24dp"
+        android:fontFamily="sans-serif-medium"
+        android:text="@string/pron_stico_del_clima"
+        android:textAlignment="center"
+        android:textColor="#25AFFF"
+        android:textSize="34sp"
+        android:layout_centerHorizontal="true"/>
+
+    <!-- TextView para mostrar la descripción del clima -->
+    <TextView
+        android:id="@+id/forecast_description"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/cargando_informaci_n_del_clima"
+        android:layout_below="@id/forecast_title"
+        android:textSize="26sp"
+        android:textColor="#FFFFFF"
+        android:textAlignment="center"
+        android:layout_marginTop="80dp"
+        android:layout_marginBottom="16dp"
+        android:layout_centerHorizontal="true"/>
+
+    <!-- Pie de página con el texto centrado -->
+    <TextView
+        android:id="@+id/footer"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:fontFamily="sans-serif-medium"
+        android:text="@string/footer"
+        android:layout_alignParentBottom="true"
+        android:layout_marginBottom="15dp"
+        android:textColor="#FFFFFF"
+        android:layout_centerHorizontal="true"
+        android:textSize="14sp"/>
+
+    <!-- Imagen del clima -->
+    <ImageView
+        android:id="@+id/imageView"
+        android:layout_width="180dp"
+        android:layout_height="156dp"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="400dp"
+        android:layout_marginBottom="16dp"
+        app:srcCompat="@drawable/sun"/>
+</RelativeLayout>

@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:gravity="center"
+    android:background="@drawable/back"
+    tools:context=".ListActivity">
+
+    <!-- TextView para mostrar el título de la pantalla -->
+    <TextView
+        android:id="@+id/pronostico_ciudades"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="80dp"
+        android:layout_marginBottom="24dp"
+        android:fontFamily="sans-serif-medium"
+        android:text="@string/pronostico_ciudades"
+        android:textAlignment="center"
+        android:textColor="#25AFFF"
+        android:textSize="34sp"/>
+
+    <!-- ListView para mostrar la lista de ciudades -->
+    <ListView
+        android:id="@+id/city_list_view"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:textSize="26sp"
+        android:textColor="#FFFFFF"
+        android:layout_marginTop="220dp"
+        android:layout_centerHorizontal="true"
+        android:layout_marginBottom="48dp"/>
+
+    <!-- Pie de página con el texto centrado -->
+    <TextView
+        android:id="@+id/footer"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:fontFamily="sans-serif-medium"
+        android:text="@string/footer"
+        android:layout_alignParentBottom="true"
+        android:layout_marginBottom="15dp"
+        android:textColor="#FFFFFF"
+        android:layout_centerHorizontal="true"
+        android:textSize="14sp"/>
+</RelativeLayout>
