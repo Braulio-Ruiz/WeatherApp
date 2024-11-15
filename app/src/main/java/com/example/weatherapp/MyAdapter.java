@@ -53,7 +53,8 @@ public class MyAdapter extends BaseAdapter {
 
         City city = cities.get(position);
         TextView cityName = convertView.findViewById(R.id.city_name);
-        TextView cityTemperature = convertView.findViewById(R.id.city_temperature); // Añade un TextView en el layout para mostrar la temperatura
+        TextView cityTemperature = convertView.findViewById(R.id.city_temperature); // Añade un TextView en el layout
+                                                                                    // para mostrar la temperatura
 
         cityName.setText(city.getName());
         fetchWeatherData(city, cityTemperature);
@@ -73,9 +74,8 @@ public class MyAdapter extends BaseAdapter {
             @Override
             public void onFailure(Call call, IOException e) {
                 // Manejo de error en la llamada a la API
-                ((ListActivity) context).runOnUiThread(() ->
-                        Toast.makeText(context, "Error: No se pudieron cargar los datos para " + city.getName(), Toast.LENGTH_SHORT).show()
-                );
+                ((ListActivity) context).runOnUiThread(() -> Toast.makeText(context,
+                        "Error: No se pudieron cargar los datos para " + city.getName(), Toast.LENGTH_SHORT).show());
             }
 
             @Override
@@ -87,9 +87,8 @@ public class MyAdapter extends BaseAdapter {
                         JSONObject main = json.getJSONObject("main");
                         double temperature = main.getDouble("temp");
 
-                        ((ListActivity) context).runOnUiThread(() ->
-                                cityTemperature.setText(String.format("%.1f°C", temperature))
-                        );
+                        ((ListActivity) context)
+                                .runOnUiThread(() -> cityTemperature.setText(String.format("%.1f°C", temperature)));
 
                     } catch (JSONException e) {
                         e.printStackTrace();

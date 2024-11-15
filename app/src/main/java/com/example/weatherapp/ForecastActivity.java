@@ -37,7 +37,8 @@ public class ForecastActivity extends AppCompatActivity {
 
     private void getWeatherData(double lat, double lon) {
         // URL de la API de OpenWeatherMap con parámetros
-        String url = "https://api.openweathermap.org/data/2.5/weather?lat=" + lat + "&lon=" + lon + "&appid=" + API_KEY + "&units=metric" + "&lang=es";
+        String url = "https://api.openweathermap.org/data/2.5/weather?lat=" + lat + "&lon=" + lon + "&appid=" + API_KEY
+                + "&units=metric" + "&lang=es";
 
         // Configuración del cliente HTTP
         OkHttpClient client = new OkHttpClient();
@@ -52,7 +53,8 @@ public class ForecastActivity extends AppCompatActivity {
             @Override
             public void onFailure(Call call, IOException e) {
                 // Manejo de error en caso de fallo en la llamada
-                runOnUiThread(() -> Toast.makeText(ForecastActivity.this, "Error: Datos no disponibles.", Toast.LENGTH_SHORT).show());
+                runOnUiThread(() -> Toast
+                        .makeText(ForecastActivity.this, "Error: Datos no disponibles.", Toast.LENGTH_SHORT).show());
             }
 
             @Override
@@ -65,17 +67,21 @@ public class ForecastActivity extends AppCompatActivity {
                         JSONObject json = new JSONObject(responseData);
                         JSONObject main = json.getJSONObject("main");
                         double temperature = main.getDouble("temp");
-                        String weatherDescription = json.getJSONArray("weather").getJSONObject(0).getString("description");
+                        String weatherDescription = json.getJSONArray("weather").getJSONObject(0)
+                                .getString("description");
 
                         // Actualización del TextView con los datos de clima
-                        runOnUiThread(() -> forecastDescription.setText("Clima: " + weatherDescription + "\nTemperatura: " + temperature + "°C"));
+                        runOnUiThread(() -> forecastDescription
+                                .setText("Clima: " + weatherDescription + "\nTemperatura: " + temperature + "°C"));
 
                     } catch (JSONException e) {
                         e.printStackTrace();
                     }
                 } else {
                     // Mensaje de error si la respuesta no fue exitosa
-                    runOnUiThread(() -> Toast.makeText(ForecastActivity.this, "Error: Datos no disponibles.", Toast.LENGTH_SHORT).show());
+                    runOnUiThread(() -> Toast
+                            .makeText(ForecastActivity.this, "Error: Datos no disponibles.", Toast.LENGTH_SHORT)
+                            .show());
                 }
             }
         });

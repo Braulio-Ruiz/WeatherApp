@@ -37,8 +37,7 @@ public class ListActivity extends AppCompatActivity {
                 new City("Valdivia", -39.8142, -73.2459),
                 new City("Puerto Montt", -41.4693, -72.9424),
                 new City("Coyhaique", -45.5712, -72.0683),
-                new City("Punta Arenas", -53.1638, -70.9171)
-        ));
+                new City("Punta Arenas", -53.1638, -70.9171)));
 
         // Creación y configuración del adaptador personalizado para mostrar la lista
         MyAdapter adapter = new MyAdapter(this, cities);

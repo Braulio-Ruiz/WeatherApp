@@ -17,18 +17,30 @@ public class WeatherResponse {
 
     public class Location {
         private String name;
-        public String getName() { return name; }
+
+        public String getName() {
+            return name;
+        }
     }
 
     public class Current {
         private double tempC;
         private Condition condition;
-        public double getTempC() { return tempC; }
-        public Condition getCondition() { return condition; }
+
+        public double getTempC() {
+            return tempC;
+        }
+
+        public Condition getCondition() {
+            return condition;
+        }
     }
 
     public class Condition {
         private String text;
-        public String getText() { return text; }
+
+        public String getText() {
+            return text;
+        }
     }
 }

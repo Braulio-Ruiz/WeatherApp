@@ -1,4 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
+
 <RelativeLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
@@ -19,7 +20,7 @@
         android:fontFamily="sans-serif-medium"
         android:text="@string/welcome_text"
         android:textColor="#25AFFF"
-        android:textSize="34sp"/>
+        android:textSize="34sp" />
 
     <!-- Botón para ver el pronóstico actual del clima -->
     <Button
@@ -34,7 +35,7 @@
         android:layout_marginBottom="12dp"
         android:layout_marginTop="100dp"
         android:textSize="18sp"
-        android:layout_centerHorizontal="true"/>
+        android:layout_centerHorizontal="true" />
 
     <!-- Botón para ver el listado de ciudades -->
     <Button
@@ -49,7 +50,7 @@
         android:layout_marginBottom="12dp"
         android:layout_centerHorizontal="true"
         android:textSize="18sp"
-        android:layout_marginTop="50dp"/>
+        android:layout_marginTop="50dp" />
 
     <!-- Pie de página con el texto centrado -->
     <TextView
@@ -62,5 +63,5 @@
         android:layout_marginBottom="15dp"
         android:textColor="#FFFFFF"
         android:layout_centerHorizontal="true"
-        android:textSize="14sp"/>
+        android:textSize="14sp" />
 </RelativeLayout>
