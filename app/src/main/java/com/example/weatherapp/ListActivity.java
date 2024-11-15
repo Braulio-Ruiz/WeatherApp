@@ -28,7 +28,6 @@ public class ListActivity extends AppCompatActivity {
                 new City("Copiapó", -27.3667, -70.3333),
                 new City("La Serena", -29.9045, -71.2489),
                 new City("Valparaíso", -33.0472, -71.6127),
-                new City("Santiago", -33.4489, -70.6693),
                 new City("Rancagua", -34.1654, -70.7399),
                 new City("Talca", -35.4264, -71.6554),
                 new City("Chillán", -36.6066, -72.1034),
