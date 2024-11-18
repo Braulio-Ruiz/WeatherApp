@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 
 <resources>
+    <!-- Cadenas de texto -->
     <string name="app_name">Weather App</string>
     <string name="welcome_text">Bienvenido a la aplicación del clima</string>
     <string name="current_forecast_button">Clima actual en Santiago</string>

@@ -2,10 +2,13 @@ package com.example.weatherapp;
 
 import android.os.Bundle;
 import android.widget.ListView;
+import android.view.animation.Animation;
+import android.view.animation.AnimationUtils;
 import androidx.appcompat.app.AppCompatActivity;
 import java.util.ArrayList;
 import java.util.Arrays;
 
+// ListActivity: Muestra una lista de ciudades y sus temperaturas actuales.
 public class ListActivity extends AppCompatActivity {
 
     // Variables para el ListView y la lista de ciudades
@@ -20,7 +23,12 @@ public class ListActivity extends AppCompatActivity {
         // Inicialización del ListView
         cityListView = findViewById(R.id.city_list_view);
 
-        // Inicialización de la lista de ciudades con sus coordenadas
+        // Aplicar animación al ListView
+        Animation fadeIn = AnimationUtils.loadAnimation(this, R.anim.fade_in);
+        cityListView.startAnimation(fadeIn);
+
+        // Proporciona una lista predefinida de ciudades con coordenadas.
+        // @return Lista de objetos City.
         cities = new ArrayList<>(Arrays.asList(
                 new City("Arica", -18.4783, -70.3126),
                 new City("Iquique", -20.2307, -70.1357),

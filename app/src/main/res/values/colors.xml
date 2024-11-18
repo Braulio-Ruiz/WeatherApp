@@ -8,4 +8,10 @@
     <color name="primaryDarkColor">#3700B3</color>
     <color name="secondaryColor">#03DAC5</color>
     <color name="textColor">#FFFFFF</color>
+    <color name="primary">#0277BD</color>
+    <color name="primary_dark">#004C8C</color>
+    <color name="accent">#FF5722</color>
+    <color name="background">#ECEFF1</color>
+    <color name="text_primary">#FFFFFF</color>
+    <color name="text_secondary">#25AFFF</color>
 </resources>

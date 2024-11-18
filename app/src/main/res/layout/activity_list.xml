@@ -21,16 +21,18 @@
         android:text="@string/pronostico_ciudades"
         android:textAlignment="center"
         android:textColor="#25AFFF"
-        android:textSize="34sp" />
+        android:textSize="34sp"
+        android:layout_centerHorizontal="true" />
 
     <!-- ListView para mostrar la lista de ciudades -->
     <ListView
         android:id="@+id/city_list_view"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
+        android:layout_below="@id/pronostico_ciudades"
         android:textSize="26sp"
         android:textColor="#FFFFFF"
-        android:layout_marginTop="220dp"
+        android:layout_marginTop="32dp"
         android:layout_centerHorizontal="true"
         android:layout_marginBottom="48dp" />
 

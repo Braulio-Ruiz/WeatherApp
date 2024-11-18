@@ -3,6 +3,7 @@ package com.example.weatherapp;
 import androidx.appcompat.app.AppCompatActivity;
 import android.os.Bundle;
 import android.widget.TextView;
+import android.widget.ImageView;
 import android.widget.Toast;
 import org.json.JSONException;
 import org.json.JSONObject;
@@ -12,13 +13,17 @@ import okhttp3.Callback;
 import okhttp3.OkHttpClient;
 import okhttp3.Request;
 import okhttp3.Response;
+import android.view.animation.Animation;
+import android.view.animation.AnimationUtils;
 
+// ForecastActivity: Muestra el pronóstico del clima actual basado en coordenadas predeterminadas.
 public class ForecastActivity extends AppCompatActivity {
 
     // Variables para los elementos de interfaz
     private TextView forecastDescription;
+    private ImageView weatherIcon;
 
-    // Reemplaza "{API key}" con tu clave API de OpenWeatherMap
+    // Variables para la API
     private final String API_KEY = "221ca3aedf3d0701ec5a7bf2b75a7efd";
     private final double LATITUDE = -33.4489; // Ejemplo: Latitud de Santiago
     private final double LONGITUDE = -70.6693; // Ejemplo: Longitud de Santiago
@@ -30,11 +35,17 @@ public class ForecastActivity extends AppCompatActivity {
 
         // Asignación de elementos de interfaz
         forecastDescription = findViewById(R.id.forecast_description);
+        weatherIcon = findViewById(R.id.weather_image);
+
+        // Aplicar animación al ícono del clima
+        Animation fadeIn = AnimationUtils.loadAnimation(this, R.anim.fade_in);
+        weatherIcon.startAnimation(fadeIn);
 
         // Llamada a la función para obtener el pronóstico del clima
         getWeatherData(LATITUDE, LONGITUDE);
     }
 
+    // Obtiene los datos del clima de la API de OpenWeather.
     private void getWeatherData(double lat, double lon) {
         // URL de la API de OpenWeatherMap con parámetros
         String url = "https://api.openweathermap.org/data/2.5/weather?lat=" + lat + "&lon=" + lon + "&appid=" + API_KEY
@@ -44,9 +55,7 @@ public class ForecastActivity extends AppCompatActivity {
         OkHttpClient client = new OkHttpClient();
 
         // Creación de la solicitud HTTP
-        Request request = new Request.Builder()
-                .url(url)
-                .build();
+        Request request = new Request.Builder().url(url).build();
 
         // Enviar la solicitud de manera asíncrona
         client.newCall(request).enqueue(new Callback() {
@@ -73,6 +82,8 @@ public class ForecastActivity extends AppCompatActivity {
                         // Actualización del TextView con los datos de clima
                         runOnUiThread(() -> forecastDescription
                                 .setText("Clima: " + weatherDescription + "\nTemperatura: " + temperature + "°C"));
+                        // Aquí puedes asignar un ícono dependiendo de la descripción del clima
+                        weatherIcon.setImageResource(getWeatherIcon(weatherDescription));
 
                     } catch (JSONException e) {
                         e.printStackTrace();
@@ -85,5 +96,18 @@ public class ForecastActivity extends AppCompatActivity {
                 }
             }
         });
+    }
+
+    // Retorna el ícono correspondiente basado en la descripción del clima.
+    // @param description Descripción del clima. @return ID del recurso de imagen.
+    private int getWeatherIcon(String description) {
+        if (description.contains("clear"))
+            return R.drawable.sun;
+        if (description.contains("cloud"))
+            return R.drawable.cloudy;
+        if (description.contains("rain"))
+            return R.drawable.rain;
+        // Ícono por defecto
+        return R.drawable.default_weather;
     }
 }

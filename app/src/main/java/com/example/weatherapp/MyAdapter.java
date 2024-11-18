@@ -17,6 +17,7 @@ import okhttp3.OkHttpClient;
 import okhttp3.Request;
 import okhttp3.Response;
 
+// MyAdapter: Adaptador para manejar y mostrar la lista de ciudades con sus temperaturas.
 public class MyAdapter extends BaseAdapter {
 
     private Context context;
@@ -24,8 +25,11 @@ public class MyAdapter extends BaseAdapter {
     private OkHttpClient client;
     private final String API_KEY = "221ca3aedf3d0701ec5a7bf2b75a7efd";
 
+    // Constructor del adaptador.
     public MyAdapter(Context context, ArrayList<City> cities) {
+        // @param context Contexto de la actividad.
         this.context = context;
+        // @param cities Lista de ciudades a mostrar.
         this.cities = cities;
         this.client = new OkHttpClient();
     }
@@ -55,13 +59,17 @@ public class MyAdapter extends BaseAdapter {
         TextView cityName = convertView.findViewById(R.id.city_name);
         TextView cityTemperature = convertView.findViewById(R.id.city_temperature); // Añade un TextView en el layout
                                                                                     // para mostrar la temperatura
-
+        // Muestra el nombre de la ciudad
         cityName.setText(city.getName());
+        // Realiza la solicitud a la API para obtener la temperatura
         fetchWeatherData(city, cityTemperature);
 
         return convertView;
     }
 
+    // Solicita la temperatura de la ciudad usando la API de OpenWeather.
+    // @param city Ciudad para obtener datos. @param cityTemperature TextView para
+    // mostrar la temperatura.
     private void fetchWeatherData(City city, TextView cityTemperature) {
         String url = "https://api.openweathermap.org/data/2.5/weather?lat=" + city.getLatitude() +
                 "&lon=" + city.getLongitude() + "&appid=" + API_KEY + "&units=metric";
