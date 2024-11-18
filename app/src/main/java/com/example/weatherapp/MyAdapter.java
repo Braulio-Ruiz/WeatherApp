@@ -16,6 +16,7 @@ import okhttp3.Callback;
 import okhttp3.OkHttpClient;
 import okhttp3.Request;
 import okhttp3.Response;
+import android.widget.ImageView;
 
 // MyAdapter: Adaptador para manejar y mostrar la lista de ciudades con sus temperaturas.
 public class MyAdapter extends BaseAdapter {
@@ -57,12 +58,14 @@ public class MyAdapter extends BaseAdapter {
 
         City city = cities.get(position);
         TextView cityName = convertView.findViewById(R.id.city_name);
-        TextView cityTemperature = convertView.findViewById(R.id.city_temperature); // Añade un TextView en el layout
-                                                                                    // para mostrar la temperatura
+        // Añade un TextView en el layout para mostrar la temperatura
+        TextView cityTemperature = convertView.findViewById(R.id.city_temperature);
+        ImageView weatherIcon = convertView.findViewById(R.id.weather_image);
+
         // Muestra el nombre de la ciudad
         cityName.setText(city.getName());
         // Realiza la solicitud a la API para obtener la temperatura
-        fetchWeatherData(city, cityTemperature);
+        fetchWeatherData(city, cityTemperature, weatherIcon);
 
         return convertView;
     }
@@ -70,7 +73,7 @@ public class MyAdapter extends BaseAdapter {
     // Solicita la temperatura de la ciudad usando la API de OpenWeather.
     // @param city Ciudad para obtener datos. @param cityTemperature TextView para
     // mostrar la temperatura.
-    private void fetchWeatherData(City city, TextView cityTemperature) {
+    private void fetchWeatherData(City city, TextView cityTemperature, ImageView weatherIcon) {
         String url = "https://api.openweathermap.org/data/2.5/weather?lat=" + city.getLatitude() +
                 "&lon=" + city.getLongitude() + "&appid=" + API_KEY + "&units=metric";
 
@@ -94,9 +97,16 @@ public class MyAdapter extends BaseAdapter {
                         JSONObject json = new JSONObject(responseData);
                         JSONObject main = json.getJSONObject("main");
                         double temperature = main.getDouble("temp");
+                        String weatherDescription = json.getJSONArray("weather").getJSONObject(0)
+                                .getString("description");
+                        int weatherIconRes = getWeatherIcon(weatherDescription);
 
-                        ((ListActivity) context)
-                                .runOnUiThread(() -> cityTemperature.setText(String.format("%.1f°C", temperature)));
+                        ((ListActivity) context).runOnUiThread(() -> {
+                            cityTemperature.setText(String.format("%.1f°C", temperature));
+
+                            // Aquí puedes asignar un ícono dependiendo de la descripción del clima
+                            weatherIcon.setImageResource(weatherIconRes);
+                        });
 
                     } catch (JSONException e) {
                         e.printStackTrace();
@@ -104,5 +114,23 @@ public class MyAdapter extends BaseAdapter {
                 }
             }
         });
+    }
+
+    // Retorna el ícono correspondiente basado en la descripción del clima.
+    // @param description Descripción del clima. @return ID del recurso de imagen.
+    private int getWeatherIcon(String weatherDescription) {
+        // Convertir a minúsculas para evitar errores por mayúsculas/minúsculas
+        weatherDescription = weatherDescription.toLowerCase();
+
+        if (weatherDescription.contains("clear"))
+            return R.drawable.sun;
+        if (weatherDescription.contains("clouds"))
+            return R.drawable.cloudy;
+        if (weatherDescription.contains("rain"))
+            return R.drawable.rain;
+        if (weatherDescription.contains("thunderstorm"))
+            return R.drawable.thunderstorm;
+        // Ícono por defecto
+        return R.drawable.default_weather;
     }
 }

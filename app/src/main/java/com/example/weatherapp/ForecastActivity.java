@@ -81,7 +81,8 @@ public class ForecastActivity extends AppCompatActivity {
 
                         // Actualización del TextView con los datos de clima
                         runOnUiThread(() -> forecastDescription
-                                .setText("Clima: " + weatherDescription + "\nTemperatura: " + temperature + "°C"));
+                                .setText("Clima: " + weatherDescription + "\n\nTemperatura: "
+                                        + (String.format("%.1f°C", temperature))));
                         // Aquí puedes asignar un ícono dependiendo de la descripción del clima
                         weatherIcon.setImageResource(getWeatherIcon(weatherDescription));
 
@@ -100,13 +101,18 @@ public class ForecastActivity extends AppCompatActivity {
 
     // Retorna el ícono correspondiente basado en la descripción del clima.
     // @param description Descripción del clima. @return ID del recurso de imagen.
-    private int getWeatherIcon(String description) {
-        if (description.contains("clear"))
+    private int getWeatherIcon(String weatherDescription) {
+        // Convertir a minúsculas para evitar errores por mayúsculas/minúsculas
+        weatherDescription = weatherDescription.toLowerCase();
+
+        if (weatherDescription.contains("claro"))
             return R.drawable.sun;
-        if (description.contains("cloud"))
+        if (weatherDescription.contains("nubes"))
             return R.drawable.cloudy;
-        if (description.contains("rain"))
+        if (weatherDescription.contains("lluvia"))
             return R.drawable.rain;
+        if (weatherDescription.contains("tormenta"))
+            return R.drawable.thunderstorm;
         // Ícono por defecto
         return R.drawable.default_weather;
     }

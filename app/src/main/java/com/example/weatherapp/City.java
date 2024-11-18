@@ -5,11 +5,13 @@ public class City {
     private String name;
     private double latitude;
     private double longitude;
+    private int weatherIcon;
 
     public City(String name, double latitude, double longitude) {
         this.name = name;
         this.latitude = latitude;
         this.longitude = longitude;
+        this.weatherIcon = R.drawable.default_weather;
     }
 
     public String getName() {
@@ -22,5 +24,9 @@ public class City {
 
     public double getLongitude() {
         return longitude;
+    }
+
+    public int getWeatherIcon() {
+        return weatherIcon;
     }
 }
