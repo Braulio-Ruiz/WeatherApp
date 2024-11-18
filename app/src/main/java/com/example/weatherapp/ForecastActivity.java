@@ -78,16 +78,18 @@ public class ForecastActivity extends AppCompatActivity {
                         double temperature = main.getDouble("temp");
                         String weatherDescription = json.getJSONArray("weather").getJSONObject(0)
                                 .getString("description");
+                        int weatherIconRes = getWeatherIcon(weatherDescription);
 
                         // Actualización del TextView con los datos de clima
-                        runOnUiThread(() -> forecastDescription
-                                .setText("Clima: " + weatherDescription + "\n\nTemperatura: "
-                                        + (String.format("%.1f°C", temperature))));
+                        runOnUiThread(() -> forecastDescription.setText("Clima: " + weatherDescription
+                                + "\n\nTemperatura: " + String.format("%.1f°C", temperature)));
                         // Aquí puedes asignar un ícono dependiendo de la descripción del clima
-                        weatherIcon.setImageResource(getWeatherIcon(weatherDescription));
+                        runOnUiThread(() -> weatherIcon.setImageResource(weatherIconRes));
 
                     } catch (JSONException e) {
                         e.printStackTrace();
+                        runOnUiThread(() -> Toast.makeText(ForecastActivity.this, "Error de datos", Toast.LENGTH_SHORT)
+                                .show());
                     }
                 } else {
                     // Mensaje de error si la respuesta no fue exitosa
