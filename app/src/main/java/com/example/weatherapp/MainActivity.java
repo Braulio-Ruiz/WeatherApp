@@ -29,6 +29,8 @@ public class MainActivity extends AppCompatActivity {
         // Aplicar animación al texto de bienvenida
         Animation fadeIn = AnimationUtils.loadAnimation(this, R.anim.fade_in);
         welcome_text.startAnimation(fadeIn);
+        btnCurrentForecast.startAnimation(fadeIn);
+        btnCityList.startAnimation(fadeIn);
 
         // Configuración de un listener para el botón de pronóstico actual
         btnCurrentForecast.setOnClickListener(view -> {

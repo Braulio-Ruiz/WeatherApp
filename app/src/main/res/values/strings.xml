@@ -9,5 +9,6 @@
     <string name="cargando_informaci_n_del_clima">Cargando información del clima...</string>
     <string name="pron_stico_del_clima">Clima actual en Santiago</string>
     <string name="pronostico_ciudades">Listado del clima actual por ciudad</string>
+    <string name="weather_description">Clima</string>
     <string name="footer">Creado por Braulio Ruiz Niñoles</string>
 </resources>

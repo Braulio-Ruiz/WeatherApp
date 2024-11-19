@@ -47,6 +47,7 @@
             android:layout_width="48dp"
             android:layout_height="48dp"
             android:layout_gravity="center_vertical"
+            android:contentDescription="@string/weather_description"
             app:srcCompat="@drawable/default_weather" />
     </LinearLayout>
 </com.google.android.material.card.MaterialCardView>

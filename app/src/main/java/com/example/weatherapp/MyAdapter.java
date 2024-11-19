@@ -88,7 +88,7 @@ public class MyAdapter extends BaseAdapter {
 
     private void fetchWeatherData(City city, String cacheKey, TextView cityTemperature, ImageView weatherIcon) {
         String url = "https://api.openweathermap.org/data/2.5/weather?lat=" + city.getLatitude() +
-                "&lon=" + city.getLongitude() + "&appid=" + API_KEY + "&units=metric&lang=es";
+                "&lon=" + city.getLongitude() + "&appid=" + API_KEY + "&units=metric";
 
         Request request = new Request.Builder().url(url).build();
         client.newCall(request).enqueue(new Callback() {
@@ -141,14 +141,20 @@ public class MyAdapter extends BaseAdapter {
     private int getWeatherIcon(String weatherDescription) {
         weatherDescription = weatherDescription.toLowerCase();
 
-        if (weatherDescription.contains("claro"))
+        if (weatherDescription.contains("clear"))
             return R.drawable.sun;
-        if (weatherDescription.contains("nubes"))
+        if (weatherDescription.contains("clouds"))
             return R.drawable.cloudy;
-        if (weatherDescription.contains("lluvia"))
+        if (weatherDescription.contains("rain"))
             return R.drawable.rain;
-        if (weatherDescription.contains("tormenta"))
+        if (weatherDescription.contains("thunderstorm"))
             return R.drawable.thunderstorm;
+        if (weatherDescription.contains("drizzle"))
+            return R.drawable.drizzle;
+        if (weatherDescription.contains("snow"))
+            return R.drawable.snow;
+        if (weatherDescription.contains("mist"))
+            return R.drawable.mist;
 
         return R.drawable.default_weather;
     }

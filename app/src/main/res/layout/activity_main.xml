@@ -14,7 +14,7 @@
         android:id="@+id/welcome_text"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="60dp"
+        android:layout_marginTop="40dp"
         android:layout_centerHorizontal="true"
         android:text="@string/welcome_text"
         android:textColor="@color/primary_text"
@@ -31,7 +31,7 @@
         android:layout_marginTop="100dp"
         app:cardCornerRadius="16dp"
         app:cardElevation="8dp"
-        app:cardBackgroundColor="@color/card_background" >
+        app:cardBackgroundColor="@color/card_background">
 
         <com.google.android.material.button.MaterialButton
             android:id="@+id/btn_current_forecast"
@@ -80,6 +80,6 @@
         android:layout_centerHorizontal="true"
         android:text="@string/footer"
         android:textColor="@color/text_secondary"
-        android:textSize="14sp"
+        android:textSize="16sp"
         android:fontFamily="sans-serif" />
 </RelativeLayout>

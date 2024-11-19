@@ -108,6 +108,12 @@ public class ForecastActivity extends AppCompatActivity {
             return R.drawable.rain;
         if (weatherDescription.contains("tormenta"))
             return R.drawable.thunderstorm;
+        if (weatherDescription.contains("llovizna"))
+            return R.drawable.drizzle;
+        if (weatherDescription.contains("nieve"))
+            return R.drawable.snow;
+        if (weatherDescription.contains("neblina"))
+            return R.drawable.mist;
 
         return R.drawable.default_weather;
     }
