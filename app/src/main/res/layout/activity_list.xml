@@ -2,50 +2,65 @@
 
 <RelativeLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:tools="http://schemas.android.com/tools"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:orientation="vertical"
-    android:gravity="center"
-    android:background="@drawable/back"
-    tools:context=".ListActivity">
+    android:background="@color/background_color">
 
-    <!-- TextView para mostrar el título de la pantalla -->
-    <TextView
-        android:id="@+id/pronostico_ciudades"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="80dp"
-        android:layout_marginBottom="24dp"
-        android:fontFamily="sans-serif-medium"
-        android:text="@string/pronostico_ciudades"
-        android:textAlignment="center"
-        android:textColor="#25AFFF"
-        android:textSize="34sp"
-        android:layout_centerHorizontal="true" />
-
-    <!-- ListView para mostrar la lista de ciudades -->
-    <ListView
-        android:id="@+id/city_list_view"
+    <!-- Tarjeta para el título -->
+    <com.google.android.material.card.MaterialCardView
+        android:id="@+id/card_title"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:layout_below="@id/pronostico_ciudades"
-        android:textSize="26sp"
-        android:textColor="#FFFFFF"
-        android:layout_marginTop="32dp"
-        android:layout_centerHorizontal="true"
-        android:layout_marginBottom="48dp" />
+        android:layout_height="wrap_content"
+        android:layout_margin="16dp"
+        app:cardCornerRadius="16dp"
+        app:cardElevation="8dp"
+        app:cardBackgroundColor="@color/card_background">
 
-    <!-- Pie de página con el texto centrado -->
+        <TextView
+            android:id="@+id/pronostico_ciudades"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:padding="16dp"
+            android:fontFamily="sans-serif-medium"
+            android:text="@string/pronostico_ciudades"
+            android:textAlignment="center"
+            android:textColor="@color/primary_text"
+            android:textSize="24sp" />
+    </com.google.android.material.card.MaterialCardView>
+
+    <!-- Tarjeta para el ListView -->
+    <com.google.android.material.card.MaterialCardView
+        android:id="@+id/card_list_view"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/card_title"
+        android:layout_margin="16dp"
+        android:layout_marginBottom="80dp"
+        android:layout_weight="1"
+        app:cardCornerRadius="16dp"
+        app:cardElevation="8dp"
+        app:cardBackgroundColor="@color/card_background">
+
+        <ListView
+            android:id="@+id/city_list_view"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:divider="@color/card_border"
+            android:dividerHeight="1dp"
+            android:padding="8dp" />
+    </com.google.android.material.card.MaterialCardView>
+
+    <!-- Pie de página -->
     <TextView
         android:id="@+id/footer"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:fontFamily="sans-serif-medium"
-        android:text="@string/footer"
         android:layout_alignParentBottom="true"
         android:layout_marginBottom="15dp"
-        android:textColor="#FFFFFF"
         android:layout_centerHorizontal="true"
-        android:textSize="14sp" />
+        android:text="@string/footer"
+        android:textColor="@color/secondary_text"
+        android:textSize="14sp"
+        android:fontFamily="sans-serif" />
 </RelativeLayout>
