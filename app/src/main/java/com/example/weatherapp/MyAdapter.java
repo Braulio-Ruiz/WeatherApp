@@ -5,6 +5,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.BaseAdapter;
+import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 import org.json.JSONException;
@@ -17,21 +18,18 @@ import okhttp3.Callback;
 import okhttp3.OkHttpClient;
 import okhttp3.Request;
 import okhttp3.Response;
-import android.widget.ImageView;
 
-// MyAdapter: Adaptador para manejar y mostrar la lista de ciudades con sus temperaturas.
 public class MyAdapter extends BaseAdapter {
 
     private final Context context;
     private final ArrayList<City> cities;
     private final OkHttpClient client;
     private final String API_KEY = "221ca3aedf3d0701ec5a7bf2b75a7efd";
+    private final HashMap<String, WeatherData> weatherCache = new HashMap<>();
 
     // Constructor del adaptador.
     public MyAdapter(Context context, ArrayList<City> cities) {
-        // @param context Contexto de la actividad.
         this.context = context;
-        // @param cities Lista de ciudades a mostrar.
         this.cities = cities;
         this.client = new OkHttpClient();
     }
@@ -74,67 +72,73 @@ public class MyAdapter extends BaseAdapter {
         City city = cities.get(position);
         holder.cityName.setText(city.getName());
 
-        // Solicita los datos climáticos
-        fetchWeatherData(city, holder.cityTemperature, holder.weatherIcon);
+        // Verifica si los datos ya están en caché
+        String cacheKey = city.getName() + city.getLatitude() + city.getLongitude();
+        if (weatherCache.containsKey(cacheKey)) {
+            WeatherData cachedData = weatherCache.get(cacheKey);
+            holder.cityTemperature.setText(cachedData.getTemperature());
+            holder.weatherIcon.setImageResource(cachedData.getIcon());
+        } else {
+            // Solicita los datos climáticos
+            fetchWeatherData(city, cacheKey, holder.cityTemperature, holder.weatherIcon);
+        }
 
         return convertView;
     }
 
-    private HashMap<String, String> weatherCache = new HashMap<>();
-
-    // Solicita la temperatura de la ciudad usando la API de OpenWeather.
-    // @param city Ciudad para obtener datos. @param cityTemperature TextView para
-    // mostrar la temperatura.
-    private void fetchWeatherData(City city, TextView cityTemperature, ImageView weatherIcon) {
-        if (weatherCache.containsKey(city.getName())) {
-            String cachedData = weatherCache.get(city.getName());
-            cityTemperature.setText(cachedData);
-            return;
-        }
-
+    private void fetchWeatherData(City city, String cacheKey, TextView cityTemperature, ImageView weatherIcon) {
         String url = "https://api.openweathermap.org/data/2.5/weather?lat=" + city.getLatitude() +
-                "&lon=" + city.getLongitude() + "&appid=" + API_KEY + "&units=metric" + "&lang=es";
+                "&lon=" + city.getLongitude() + "&appid=" + API_KEY + "&units=metric&lang=es";
 
         Request request = new Request.Builder().url(url).build();
         client.newCall(request).enqueue(new Callback() {
             @Override
             public void onFailure(Call call, IOException e) {
-                ((ListActivity) context).runOnUiThread(() -> Toast.makeText(context,
-                        "Error al cargar datos para " + city.getName(), Toast.LENGTH_SHORT).show());
+                runOnUiThread(() -> Toast
+                        .makeText(context, "Error al cargar datos para " + city.getName(), Toast.LENGTH_SHORT).show());
             }
 
             @Override
             public void onResponse(Call call, Response response) throws IOException {
                 if (response.isSuccessful()) {
-                    String responseData = response.body().string();
                     try {
+                        String responseData = response.body().string();
                         JSONObject json = new JSONObject(responseData);
-                        JSONObject main = json.getJSONObject("main");
-                        double temperature = main.getDouble("temp");
-                        String weatherDescription = json.getJSONArray("weather").getJSONObject(0).getString("description");
+                        JSONObject main = json.optJSONObject("main");
+                        String weatherDescription = json.getJSONArray("weather").getJSONObject(0)
+                                .optString("description", "Desconocido");
+                        double temperature = main != null ? main.optDouble("temp", 0) : 0;
                         int weatherIconRes = getWeatherIcon(weatherDescription);
 
-                        ((ListActivity) context).runOnUiThread(() -> {
-                            cityTemperature.setText(String.format("%.1f°C", temperature));
-                            weatherIcon.setImageResource(weatherIconRes);
+                        // Guarda en caché los datos obtenidos
+                        WeatherData data = new WeatherData(String.format("%.1f°C", temperature), weatherIconRes);
+                        weatherCache.put(cacheKey, data);
+
+                        runOnUiThread(() -> {
+                            cityTemperature.setText(data.getTemperature());
+                            weatherIcon.setImageResource(data.getIcon());
                         });
 
                     } catch (JSONException e) {
-                        ((ListActivity) context).runOnUiThread(() -> Toast.makeText(context,
-                                "Error al procesar datos para " + city.getName(), Toast.LENGTH_SHORT).show());
+                        runOnUiThread(() -> Toast
+                                .makeText(context, "Error al procesar datos para " + city.getName(), Toast.LENGTH_SHORT)
+                                .show());
                     }
                 } else {
-                    ((ListActivity) context).runOnUiThread(() -> Toast.makeText(context,
+                    runOnUiThread(() -> Toast.makeText(context,
                             "Error en la respuesta de la API: " + response.message(), Toast.LENGTH_SHORT).show());
                 }
             }
         });
     }
 
-    // Retorna el ícono correspondiente basado en la descripción del clima.
-    // @param description Descripción del clima. @return ID del recurso de imagen.
+    private void runOnUiThread(Runnable action) {
+        if (context instanceof android.app.Activity) {
+            ((android.app.Activity) context).runOnUiThread(action);
+        }
+    }
+
     private int getWeatherIcon(String weatherDescription) {
-        // Convertir a minúsculas para evitar errores por mayúsculas/minúsculas
         weatherDescription = weatherDescription.toLowerCase();
 
         if (weatherDescription.contains("claro"))
@@ -145,7 +149,25 @@ public class MyAdapter extends BaseAdapter {
             return R.drawable.rain;
         if (weatherDescription.contains("tormenta"))
             return R.drawable.thunderstorm;
-        // Ícono por defecto
+
         return R.drawable.default_weather;
+    }
+
+    private static class WeatherData {
+        private final String temperature;
+        private final int icon;
+
+        public WeatherData(String temperature, int icon) {
+            this.temperature = temperature;
+            this.icon = icon;
+        }
+
+        public String getTemperature() {
+            return temperature;
+        }
+
+        public int getIcon() {
+            return icon;
+        }
     }
 }
