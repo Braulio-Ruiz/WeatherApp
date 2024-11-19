@@ -108,7 +108,7 @@ public class ForecastActivity extends AppCompatActivity {
         weatherDescription = weatherDescription.toLowerCase();
 
         if (weatherDescription.contains("claro"))
-            return R.drawable.sun;
+            return R.icon.sun;
         if (weatherDescription.contains("nubes"))
             return R.drawable.cloudy;
         if (weatherDescription.contains("lluvia"))
