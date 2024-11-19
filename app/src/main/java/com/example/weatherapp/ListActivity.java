@@ -7,35 +7,53 @@ import android.view.animation.AnimationUtils;
 import androidx.appcompat.app.AppCompatActivity;
 import java.util.ArrayList;
 
+/**
+ * ListActivity: Actividad que muestra una lista de ciudades en un ListView.
+ * Cada ciudad contiene un nombre, una latitud y una longitud predefinidas.
+ */
 public class ListActivity extends AppCompatActivity {
 
-    // Variables para el ListView y la lista de ciudades
-    private ListView cityListView;
-    private ArrayList<City> cities;
+    // Variables para manejar el ListView y la lista de ciudades.
+    private ListView cityListView; // Componente visual para mostrar la lista de ciudades.
+    private ArrayList<City> cities; // Lista de objetos City que se mostrará en el ListView.
 
+    /**
+     * Método `onCreate`: Inicializa la actividad.
+     * Configura el diseño, el ListView, aplica una animación y asigna un adaptador
+     * personalizado.
+     *
+     * @param savedInstanceState Estado previo de la actividad (si aplica).
+     */
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_list);
+        setContentView(R.layout.activity_list); // Vincula la actividad con el diseño XML `activity_list`.
 
-        // Inicialización del ListView
+        // Vincula el ListView con su componente en el diseño XML.
         cityListView = findViewById(R.id.city_list_view);
 
-        // Aplicar animación al ListView
+        // Aplica una animación de "fade in" al ListView para mejorar la experiencia
+        // visual.
         Animation fadeIn = AnimationUtils.loadAnimation(this, R.anim.fade_in);
         cityListView.startAnimation(fadeIn);
 
-        // Inicializar la lista de ciudades
+        // Inicializa la lista de ciudades con valores predefinidos.
         initializeCities();
 
-        // Creación y configuración del adaptador personalizado para mostrar la lista
+        // Configura el adaptador personalizado que conecta la lista de ciudades con el
+        // ListView.
         MyAdapter adapter = new MyAdapter(this, cities);
-        cityListView.setAdapter(adapter);
+        cityListView.setAdapter(adapter); // Asigna el adaptador al ListView.
     }
 
-    // Inicializa la lista de ciudades con coordenadas predefinidas.
+    /**
+     * Inicializa la lista de ciudades con sus respectivas coordenadas.
+     * Cada ciudad se agrega a un ArrayList de objetos `City`.
+     */
     private void initializeCities() {
-        cities = new ArrayList<>();
+        cities = new ArrayList<>(); // Crea una nueva instancia de ArrayList para almacenar las ciudades.
+
+        // Agrega cada ciudad con su nombre, latitud y longitud.
         cities.add(new City("Arica", -18.4783, -70.3126));
         cities.add(new City("Iquique", -20.2307, -70.1357));
         cities.add(new City("Antofagasta", -23.6500, -70.4000));

@@ -10,8 +10,8 @@ android {
         applicationId = "com.example.weatherapp"
         minSdk = 29
         targetSdk = 34
-        versionCode = 2
-        versionName = "3.0"
+        versionCode = 1
+        versionName = "1.0"
 
         // Configuración para manejar permisos en tiempo de ejecución
         vectorDrawables.useSupportLibrary = true
