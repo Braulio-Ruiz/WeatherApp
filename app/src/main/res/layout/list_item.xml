@@ -6,8 +6,8 @@
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:layout_margin="8dp"
-    app:cardCornerRadius="12dp"
-    app:cardElevation="20dp"
+    app:cardCornerRadius="6dp"
+    app:cardElevation="16dp"
     app:strokeColor="@color/card_border"
     app:strokeWidth="1dp"
     app:cardBackgroundColor="@color/card_background">
@@ -16,7 +16,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="horizontal"
-        android:padding="16dp"
+        android:padding="10dp"
         android:gravity="center_vertical">
 
         <!-- TextView para mostrar el nombre de cada ciudad -->

@@ -140,6 +140,8 @@ public class ForecastActivity extends AppCompatActivity {
             return R.drawable.sun;
         if (weatherDescription.contains("nubes"))
             return R.drawable.cloudy;
+        if (weatherDescription.contains("nuboso"))
+            return R.drawable.cloudy;
         if (weatherDescription.contains("lluvia"))
             return R.drawable.rain;
         if (weatherDescription.contains("tormenta"))

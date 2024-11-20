@@ -179,6 +179,8 @@ public class MyAdapter extends BaseAdapter {
             return R.drawable.sun;
         if (weatherDescription.contains("clouds"))
             return R.drawable.cloudy;
+        if (weatherDescription.contains("cloudy"))
+            return R.drawable.cloudy;
         if (weatherDescription.contains("rain"))
             return R.drawable.rain;
         if (weatherDescription.contains("thunderstorm"))
