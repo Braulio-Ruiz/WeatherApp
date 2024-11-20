@@ -7,23 +7,17 @@ import android.view.animation.AnimationUtils;
 import androidx.appcompat.app.AppCompatActivity;
 import java.util.ArrayList;
 
-/**
- * ListActivity: Actividad que muestra una lista de ciudades en un ListView.
- * Cada ciudad contiene un nombre, una latitud y una longitud predefinidas.
- */
+//ListActivity: Actividad que muestra una lista de ciudades en un ListView.
+//Cada ciudad contiene un nombre, una latitud y una longitud predefinidas.
 public class ListActivity extends AppCompatActivity {
 
     // Variables para manejar el ListView y la lista de ciudades.
     private ListView cityListView; // Componente visual para mostrar la lista de ciudades.
     private ArrayList<City> cities; // Lista de objetos City que se mostrará en el ListView.
 
-    /**
-     * Método `onCreate`: Inicializa la actividad.
-     * Configura el diseño, el ListView, aplica una animación y asigna un adaptador
-     * personalizado.
-     *
-     * @param savedInstanceState Estado previo de la actividad (si aplica).
-     */
+    // Método `onCreate`: Inicializa la actividad. Configura el diseño, el ListView,
+    // aplica una animación y asigna un adaptador personalizado.
+    // @param savedInstanceState: Estado previo de la actividad (si aplica).
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -46,10 +40,8 @@ public class ListActivity extends AppCompatActivity {
         cityListView.setAdapter(adapter); // Asigna el adaptador al ListView.
     }
 
-    /**
-     * Inicializa la lista de ciudades con sus respectivas coordenadas.
-     * Cada ciudad se agrega a un ArrayList de objetos `City`.
-     */
+    // Inicializa la lista de ciudades con sus respectivas coordenadas. Cada ciudad
+    // se agrega a un ArrayList de objetos `City`.
     private void initializeCities() {
         cities = new ArrayList<>(); // Crea una nueva instancia de ArrayList para almacenar las ciudades.
 

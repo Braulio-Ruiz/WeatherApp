@@ -19,27 +19,21 @@ import okhttp3.OkHttpClient;
 import okhttp3.Request;
 import okhttp3.Response;
 
-/**
- * MyAdapter: Adaptador personalizado para mostrar una lista de ciudades con sus
- * datos climáticos.
- * Gestiona las vistas de cada elemento y la obtención de datos desde la API de
- * OpenWeatherMap.
- */
+///MyAdapter: Adaptador personalizado para mostrar una lista de ciudades con sus datos climáticos.
+//Gestiona las vistas de cada elemento y la obtención de datos desde la API de OpenWeatherMap.
 public class MyAdapter extends BaseAdapter {
 
     private final Context context; // Contexto de la actividad donde se utiliza el adaptador.
     private final ArrayList<City> cities; // Lista de ciudades a mostrar.
     private final OkHttpClient client; // Cliente HTTP para realizar las solicitudes de red.
     private final String API_KEY = "221ca3aedf3d0701ec5a7bf2b75a7efd"; // Clave de acceso a la API de OpenWeatherMap.
-    private final HashMap<String, WeatherData> weatherCache = new HashMap<>(); // Caché para almacenar datos climáticos
-                                                                               // y reducir llamadas a la API.
 
-    /**
-     * Constructor del adaptador.
-     *
-     * @param context Contexto de la actividad.
-     * @param cities  Lista de ciudades a manejar.
-     */
+    // Caché para almacenar datos climáticos y reducir llamadas a la API.
+    private final HashMap<String, WeatherData> weatherCache = new HashMap<>();
+
+    // Constructor del adaptador.
+    // @param context: Contexto de la actividad.
+    // @param cities: Lista de ciudades a manejar.
     public MyAdapter(Context context, ArrayList<City> cities) {
         this.context = context;
         this.cities = cities;
@@ -65,26 +59,20 @@ public class MyAdapter extends BaseAdapter {
         return position;
     }
 
-    /**
-     * ViewHolder: Clase interna para almacenar las vistas asociadas a un elemento
-     * del ListView,
-     * mejorando el rendimiento al reutilizar vistas.
-     */
+    // ViewHolder: Clase interna para almacenar las vistas asociadas a un elemento
+    // del ListView, mejorando el rendimiento al reutilizar vistas.
     private static class ViewHolder {
         TextView cityName; // Nombre de la ciudad.
         TextView cityTemperature; // Temperatura de la ciudad.
         ImageView weatherIcon; // Icono que representa el estado del clima.
     }
 
-    /**
-     * Método `getView`: Genera y personaliza las vistas para cada elemento del
-     * ListView.
-     *
-     * @param position    Posición del elemento en la lista.
-     * @param convertView Vista existente reutilizable (si aplica).
-     * @param parent      Grupo padre que contiene las vistas.
-     * @return Vista personalizada para el elemento.
-     */
+    // Método `getView`: Genera y personaliza las vistas para cada elemento del
+    // ListView.
+    // @param position: Posición del elemento en la lista.
+    // @param convertView: Vista existente reutilizable (si aplica).
+    // @param parent: Grupo padre que contiene las vistas.
+    // @return: Vista personalizada para el elemento.
     @Override
     public View getView(int position, View convertView, ViewGroup parent) {
         ViewHolder holder;
@@ -120,15 +108,12 @@ public class MyAdapter extends BaseAdapter {
         return convertView;
     }
 
-    /**
-     * Método `fetchWeatherData`: Solicita datos climáticos desde la API y actualiza
-     * la vista.
-     *
-     * @param city            Ciudad para la cual se solicitan los datos.
-     * @param cacheKey        Clave única para almacenar en caché los datos.
-     * @param cityTemperature TextView para mostrar la temperatura.
-     * @param weatherIcon     ImageView para mostrar el ícono del clima.
-     */
+    // Método `fetchWeatherData`: Solicita datos climáticos desde la API y actualiza
+    // la vista.
+    // @param city: Ciudad para la cual se solicitan los datos.
+    // @param cacheKey: Clave única para almacenar en caché los datos.
+    // @param cityTemperature: TextView para mostrar la temperatura.
+    // @param weatherIcon: ImageView para mostrar el ícono del clima.
     private void fetchWeatherData(City city, String cacheKey, TextView cityTemperature, ImageView weatherIcon) {
         String url = "https://api.openweathermap.org/data/2.5/weather?lat=" + city.getLatitude() +
                 "&lon=" + city.getLongitude() + "&appid=" + API_KEY + "&units=metric";
@@ -174,25 +159,19 @@ public class MyAdapter extends BaseAdapter {
         });
     }
 
-    /**
-     * Método `runOnUiThread`: Ejecuta una acción en el hilo principal para
-     * actualizar la UI.
-     *
-     * @param action Acción a ejecutar.
-     */
+    // Método `runOnUiThread`: Ejecuta una acción en el hilo principal para
+    // actualizar la UI.
+    // @param action: Acción a ejecutar.
     private void runOnUiThread(Runnable action) {
         if (context instanceof android.app.Activity) {
             ((android.app.Activity) context).runOnUiThread(action);
         }
     }
 
-    /**
-     * Método `getWeatherIcon`: Devuelve el recurso drawable correspondiente a la
-     * descripción del clima.
-     *
-     * @param weatherDescription Descripción textual del clima.
-     * @return ID del recurso drawable.
-     */
+    // Método `getWeatherIcon`: Devuelve el recurso drawable correspondiente a la
+    // descripción del clima.
+    // @param weatherDescription: Descripción textual del clima.
+    // @return: ID del recurso drawable.
     private int getWeatherIcon(String weatherDescription) {
         weatherDescription = weatherDescription.toLowerCase();
 
@@ -214,10 +193,8 @@ public class MyAdapter extends BaseAdapter {
         return R.drawable.default_weather; // Ícono por defecto si no coincide.
     }
 
-    /**
-     * Clase interna `WeatherData`: Representa datos climáticos individuales para
-     * caché.
-     */
+    // Clase interna `WeatherData`: Representa datos climáticos individuales para
+    // caché.
     private static class WeatherData {
         private final String temperature; // Texto de la temperatura (e.g., "25.0°C").
         private final int icon; // ID del ícono del clima.

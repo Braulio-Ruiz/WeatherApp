@@ -5,11 +5,8 @@ import okhttp3.logging.HttpLoggingInterceptor;
 import retrofit2.Retrofit;
 import retrofit2.converter.gson.GsonConverterFactory;
 
-/**
- * Clase ApiClient:
- * Esta clase configura y proporciona una instancia singleton de Retrofit
- * para realizar solicitudes HTTP a la API del clima.
- */
+//Clase ApiClient: Esta clase configura y proporciona una instancia singleton de 
+//Retrofit para realizar solicitudes HTTP a la API del clima.
 public class ApiClient {
 
     // URL base para las solicitudes a la API.
@@ -18,13 +15,10 @@ public class ApiClient {
     // Instancia estática de Retrofit para reutilización.
     private static Retrofit retrofit;
 
-    /**
-     * Obtiene una instancia singleton de Retrofit configurada con la URL base, un
-     * cliente HTTP,
-     * y un convertidor JSON (Gson).
-     *
-     * @return Retrofit - Instancia configurada para realizar solicitudes a la API.
-     */
+    // Obtiene una instancia singleton de Retrofit configurada con la URL base, un
+    // cliente HTTP,
+    // y un convertidor JSON (Gson).
+    // @return Retrofit: Instancia configurada para realizar solicitudes a la API.
     public static Retrofit getClient() {
         // Comprueba si la instancia de Retrofit ya existe.
         if (retrofit == null) {

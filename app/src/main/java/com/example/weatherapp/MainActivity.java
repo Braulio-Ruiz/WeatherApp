@@ -18,15 +18,11 @@ public class MainActivity extends AppCompatActivity {
     private Button btnCityList; // Botón para acceder a la lista de ciudades.
     private TextView welcome_text; // Texto de bienvenida para el usuario.
 
-    /**
-     * Método que se ejecuta al crear la actividad. Configura la interfaz de
-     * usuario,
-     * enlaza elementos del diseño con el código y define comportamientos.
-     *
-     * @param savedInstanceState Objeto Bundle que contiene el estado de la
-     *                           actividad si
-     *                           esta fue pausada o recreada anteriormente.
-     */
+    // Método que se ejecuta al crear la actividad. Configura la interfaz de
+    // usuario,
+    // enlaza elementos del diseño con el código y define comportamientos.
+    // @param savedInstanceState: Objeto Bundle que contiene el estado de la
+    // actividad si esta fue pausada o recreada anteriormente.
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);

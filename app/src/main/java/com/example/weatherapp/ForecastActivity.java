@@ -28,12 +28,9 @@ public class ForecastActivity extends AppCompatActivity {
     private final double LATITUDE = -33.4489; // Latitud de Santiago, Chile.
     private final double LONGITUDE = -70.6693; // Longitud de Santiago, Chile.
 
-    /**
-     * Método `onCreate`: Configura la actividad al ser creada.
-     * Inicializa las vistas y realiza la solicitud para obtener datos del clima.
-     *
-     * @param savedInstanceState Estado previo de la actividad (si aplica).
-     */
+    /// Método `onCreate`: Configura la actividad al ser creada.
+    // Inicializa las vistas y realiza la solicitud para obtener datos del clima.
+    // @param savedInstanceState: Estado previo de la actividad (si aplica).
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -51,13 +48,10 @@ public class ForecastActivity extends AppCompatActivity {
         getWeatherData(LATITUDE, LONGITUDE);
     }
 
-    /**
-     * Realiza una solicitud a la API de OpenWeather para obtener los datos
-     * climáticos de una ubicación.
-     *
-     * @param lat Latitud de la ubicación.
-     * @param lon Longitud de la ubicación.
-     */
+    // Realiza una solicitud a la API de OpenWeather para obtener los datos
+    // climáticos de una ubicación.
+    // @param lat: Latitud de la ubicación.
+    // @param lon: Longitud de la ubicación.
     private void getWeatherData(double lat, double lon) {
         // Construye la URL de la solicitud con los parámetros necesarios.
         String url = "https://api.openweathermap.org/data/2.5/weather?lat=" + lat
@@ -72,12 +66,10 @@ public class ForecastActivity extends AppCompatActivity {
 
         // Encola la solicitud de forma asíncrona.
         client.newCall(request).enqueue(new Callback() {
-            /**
-             * Maneja los errores de la solicitud HTTP.
-             *
-             * @param call Objeto que representa la solicitud fallida.
-             * @param e    Excepción que describe el error ocurrido.
-             */
+
+            // Maneja los errores de la solicitud HTTP.
+            // @param call: Objeto que representa la solicitud fallida.
+            // @param e: Excepción que describe el error ocurrido.
             @Override
             public void onFailure(Call call, IOException e) {
                 // Muestra un mensaje al usuario indicando el error.
@@ -86,12 +78,9 @@ public class ForecastActivity extends AppCompatActivity {
                         Toast.LENGTH_SHORT).show());
             }
 
-            /**
-             * Maneja la respuesta exitosa o fallida del servidor.
-             *
-             * @param call     Objeto que representa la solicitud.
-             * @param response Respuesta del servidor.
-             */
+            // Maneja la respuesta exitosa o fallida del servidor.
+            // @param call: Objeto que representa la solicitud.
+            // @param response: Respuesta del servidor.
             @Override
             public void onResponse(Call call, Response response) throws IOException {
                 if (response.isSuccessful()) {
@@ -135,13 +124,9 @@ public class ForecastActivity extends AppCompatActivity {
         });
     }
 
-    /**
-     * Obtiene el recurso de imagen correspondiente según la descripción del clima.
-     *
-     * @param weatherDescription Descripción del clima en texto (e.g., "nubes
-     *                           dispersas").
-     * @return ID del recurso drawable que representa el estado del clima.
-     */
+    // Obtiene el recurso de imagen correspondiente según la descripción del clima.
+    // @param weatherDescription: Descripción del clima en texto.
+    // @return: ID del recurso drawable que representa el estado del clima.
     private int getWeatherIcon(String weatherDescription) {
         // Convierte la descripción a minúsculas para una comparación más robusta.
         weatherDescription = weatherDescription.toLowerCase();
