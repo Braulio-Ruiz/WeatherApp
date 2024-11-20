@@ -10,7 +10,7 @@ public interface WeatherApiService {
 
     // Método `getCurrentWeather`: Realiza una solicitud GET a la API para obtener
     // el clima actual de una ubicación específica.
-    // @param city Este parámetro especifica la ciudad o las coordenadas de la
+    // @param city: Este parámetro especifica la ciudad o las coordenadas de la
     // ubicación.
     // - Puede ser el nombre de una ciudad, como "Santiago".
     // - También puede ser una combinación de latitud y longitud en formato
