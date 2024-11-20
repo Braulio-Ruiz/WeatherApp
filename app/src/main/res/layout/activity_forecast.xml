@@ -31,10 +31,11 @@
     <!-- Tarjeta para mostrar la descripción del clima -->
     <com.google.android.material.card.MaterialCardView
         android:id="@+id/card_forecast_description"
-        android:layout_width="match_parent"
+        android:layout_width="300dp"
         android:layout_height="wrap_content"
+        android:layout_centerHorizontal="true"
         android:layout_below="@id/card_title"
-        android:layout_margin="60dp"
+        android:layout_marginTop="90dp"
         app:cardCornerRadius="6dp"
         app:cardElevation="16dp"
         app:cardBackgroundColor="@color/card_background">
@@ -58,7 +59,7 @@
         android:layout_height="180dp"
         android:layout_below="@id/card_forecast_description"
         android:layout_centerHorizontal="true"
-        android:layout_marginTop="25dp"
+        android:layout_marginTop="60dp"
         app:cardCornerRadius="6dp"
         app:cardElevation="16dp"
         app:cardBackgroundColor="@color/card_background">
