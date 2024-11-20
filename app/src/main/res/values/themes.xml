@@ -6,13 +6,10 @@
 
     <style name="Theme.WeatherApp" parent="Theme.MaterialComponents.DayNight.DarkActionBar">
         <!-- Personalización del tema -->
-        <item name="colorPrimary">@color/button_primary</item>
-        <item name="colorPrimaryVariant">@color/primary_text</item>
-        <item name="colorOnPrimary">@color/white</item>
-        <item name="colorSecondary">@color/button_primary</item>
-        <item name="colorSecondaryVariant">@color/primary_text</item>
+        <item name="colorPrimary">@color/background</item>
+        <item name="colorPrimaryVariant">@color/text_primary</item>
+        <item name="colorOnPrimary">@color/background</item>
+        <item name="colorSecondary">@color/text_primary</item>
+        <item name="colorSecondaryVariant">@color/text_secondary</item>
     </style>
-
-
-
 </resources>
