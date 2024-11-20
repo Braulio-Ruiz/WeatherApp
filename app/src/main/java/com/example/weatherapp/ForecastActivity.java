@@ -98,8 +98,12 @@ public class ForecastActivity extends AppCompatActivity {
 
                         // Actualiza la interfaz gráfica en el hilo principal.
                         runOnUiThread(() -> {
+                            // Convierte la primera letra a mayúscula y el resto a minúscula.
+                            String formattedDescription = weatherDescription.substring(0, 1).toUpperCase()
+                                    + weatherDescription.substring(1).toLowerCase();
+
                             forecastDescription.setText(String.format("Clima: %s\nTemperatura: %.1f°C",
-                                    weatherDescription, temperature)); // Actualiza el texto.
+                                    formattedDescription, temperature)); // Actualiza el texto.
                             weatherIcon.setImageResource(weatherIconRes); // Cambia el ícono del clima.
 
                             // Aplica una animación de "fade in" al ícono del clima.
