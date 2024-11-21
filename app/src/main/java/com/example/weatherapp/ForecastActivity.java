@@ -139,18 +139,18 @@ public class ForecastActivity extends AppCompatActivity {
         if (weatherDescription.contains("claro"))
             return R.drawable.sun;
         if (weatherDescription.contains("nubes"))
-            return R.drawable.cloudy;
+            return R.drawable.clouds;
         if (weatherDescription.contains("nuboso"))
             return R.drawable.cloudy;
+        if (weatherDescription.contains("llovizna"))
+            return R.drawable.drizzle;
         if (weatherDescription.contains("lluvia"))
             return R.drawable.rain;
         if (weatherDescription.contains("tormenta"))
             return R.drawable.thunderstorm;
-        if (weatherDescription.contains("llovizna"))
-            return R.drawable.drizzle;
         if (weatherDescription.contains("nieve"))
             return R.drawable.snow;
-        if (weatherDescription.contains("neblina"))
+        if (weatherDescription.contains("nieblina"))
             return R.drawable.mist;
 
         // Retorna un ícono predeterminado si no hay coincidencias.
