@@ -116,8 +116,7 @@ public class MyAdapter extends BaseAdapter {
     // @param weatherIcon: ImageView para mostrar el ícono del clima.
     private void fetchWeatherData(City city, String cacheKey, TextView cityTemperature, ImageView weatherIcon) {
         String url = "https://api.openweathermap.org/data/2.5/weather?lat=" + city.getLatitude() +
-                "&lon=" + city.getLongitude() + "&appid=" + API_KEY + "&units=metric";
-
+                "&lon=" + city.getLongitude() + "&appid=" + API_KEY + "&units=metric" + "&lang=es";
         Request request = new Request.Builder().url(url).build();
         client.newCall(request).enqueue(new Callback() {
             @Override
@@ -175,24 +174,25 @@ public class MyAdapter extends BaseAdapter {
     private int getWeatherIcon(String weatherDescription) {
         weatherDescription = weatherDescription.toLowerCase();
 
-        if (weatherDescription.contains("clear"))
+        if (weatherDescription.contains("claro"))
             return R.drawable.sun;
-        if (weatherDescription.contains("clouds"))
+        if (weatherDescription.contains("nubes"))
             return R.drawable.cloudy;
-        if (weatherDescription.contains("cloudy"))
+        if (weatherDescription.contains("nuboso"))
             return R.drawable.cloudy;
-        if (weatherDescription.contains("rain"))
+        if (weatherDescription.contains("lluvia"))
             return R.drawable.rain;
-        if (weatherDescription.contains("thunderstorm"))
+        if (weatherDescription.contains("tormenta"))
             return R.drawable.thunderstorm;
-        if (weatherDescription.contains("drizzle"))
+        if (weatherDescription.contains("llovizna"))
             return R.drawable.drizzle;
-        if (weatherDescription.contains("snow"))
+        if (weatherDescription.contains("nieve"))
             return R.drawable.snow;
-        if (weatherDescription.contains("mist"))
+        if (weatherDescription.contains("neblina"))
             return R.drawable.mist;
 
-        return R.drawable.default_weather; // Ícono por defecto si no coincide.
+        // Retorna un ícono predeterminado si no hay coincidencias.
+        return R.drawable.default_weather;
     }
 
     // Clase interna `WeatherData`: Representa datos climáticos individuales para
